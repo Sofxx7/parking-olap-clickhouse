@@ -23,14 +23,16 @@ El porcentaje ocupado en la demo es una proporción de lecturas etiquetadas como
 Requiere Docker y Python 3.12 o superior.
 
 ```powershell
+$env:CLICKHOUSE_PASSWORD = "demo-password"
 docker run --name clickhouse-olap -d `
   -p 127.0.0.1:8123:8123 `
-  clickhouse/clickhouse-server:26.10
+  -e "CLICKHOUSE_PASSWORD=$env:CLICKHOUSE_PASSWORD" `
+  clickhouse/clickhouse-server:26.10.3.7
 python scripts/build_data.py
 python -m http.server 8000 --directory site
 ```
 
-Abre `http://localhost:8000`. El script elimina y vuelve a crear la tabla de demostración en cada ejecución para que no duplique las filas.
+La clave `demo-password` sirve únicamente para el contenedor local efímero. Abre `http://localhost:8000`. El script elimina y vuelve a crear la tabla de demostración en cada ejecución para que no duplique las filas.
 
 ## Despliegue
 

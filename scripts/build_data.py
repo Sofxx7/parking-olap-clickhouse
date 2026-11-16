@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import os
+from base64 import b64encode
 from pathlib import Path
 from time import sleep
 from urllib.error import URLError
@@ -17,7 +19,17 @@ OUTPUT_PATH = ROOT / "site" / "data.json"
 
 def clickhouse_request(query: str, body: bytes | None = None) -> bytes:
     url = BASE_URL + "?" + urlencode({"query": query})
-    request = Request(url, data=body, method="POST")
+    password = os.environ.get("CLICKHOUSE_PASSWORD")
+    if not password:
+        raise RuntimeError("Set CLICKHOUSE_PASSWORD for the local ClickHouse container")
+    user = os.environ.get("CLICKHOUSE_USER", "default")
+    token = b64encode(f"{user}:{password}".encode("utf-8")).decode("ascii")
+    request = Request(
+        url,
+        data=body,
+        headers={"Authorization": f"Basic {token}"},
+        method="POST",
+    )
     with urlopen(request, timeout=60) as response:
         return response.read()
 
