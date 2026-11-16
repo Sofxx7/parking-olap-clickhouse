@@ -1,0 +1,17 @@
+camera,datetime,day,hour,image_url,minute,month,occupancy,slot_id,weather,year,occupant_changed
+A,20261101_0800,1,8,sample/A/slot1.jpg,0,11,0,1,S,2026,\N
+A,20261101_0805,1,8,sample/A/slot1.jpg,5,11,1,1,S,2026,1
+A,20261101_0810,1,8,sample/A/slot1.jpg,10,11,1,1,S,2026,0
+A,20261101_0815,1,8,sample/A/slot1.jpg,15,11,0,1,S,2026,1
+A,20261101_0820,1,8,sample/A/slot2.jpg,20,11,0,2,S,2026,\N
+A,20261101_0825,1,8,sample/A/slot2.jpg,25,11,0,2,S,2026,0
+A,20261101_0830,1,8,sample/A/slot2.jpg,30,11,1,2,S,2026,1
+A,20261101_0835,1,8,sample/A/slot2.jpg,35,11,1,2,S,2026,0
+B,20261101_0800,1,8,sample/B/slot1.jpg,0,11,1,1,O,2026,\N
+B,20261101_0805,1,8,sample/B/slot1.jpg,5,11,1,1,O,2026,0
+B,20261101_0810,1,8,sample/B/slot1.jpg,10,11,1,1,O,2026,0
+B,20261101_0815,1,8,sample/B/slot1.jpg,15,11,1,1,O,2026,0
+B,20261101_0820,1,8,sample/B/slot2.jpg,20,11,0,2,O,2026,\N
+B,20261101_0825,1,8,sample/B/slot2.jpg,25,11,0,2,O,2026,0
+B,20261101_0830,1,8,sample/B/slot2.jpg,30,11,0,2,O,2026,0
+B,20261101_0835,1,8,sample/B/slot2.jpg,35,11,1,2,O,2026,1

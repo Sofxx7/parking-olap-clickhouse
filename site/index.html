@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f3ee" />
+    <title>Ocupación vehicular | OLAP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./">P<span>·</span>OLAP</a>
+      <span class="eyebrow">CLICKHOUSE · MERGETREE</span>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-copy"><p class="eyebrow">ANÁLISIS MULTIDIMENSIONAL</p><h1>Ocupación,<br /><em>vista por cámara.</em></h1>
+          <p>Consultas OLAP sobre lecturas agrupadas por cámara y hora. Explora los registros sin confundir una muestra ocupada con la capacidad física del estacionamiento.</p></div>
+        <div class="hero-badge"><span class="badge-icon">↗</span><span>DATOS<br />SINTÉTICOS</span></div>
+      </section>
+
+      <section class="metrics" aria-label="Métricas principales">
+        <article class="metric"><span class="metric-label">Lecturas</span><strong id="total">—</strong><small>filas analizadas</small></article>
+        <article class="metric"><span class="metric-label">Lecturas ocupadas</span><strong id="occupied">—</strong><small>occupancy = 1</small></article>
+        <article class="metric accent"><span class="metric-label">Proporción ocupada</span><strong id="rate">—</strong><small>sobre las lecturas</small></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel cameras-panel">
+          <div class="panel-heading"><div><p class="eyebrow">DIMENSIÓN · CÁMARA</p><h2>Lecturas ocupadas</h2></div><span class="unit">por cámara</span></div>
+          <div id="camera-chart" class="camera-chart"></div>
+        </article>
+        <article class="panel note-panel"><p class="eyebrow">CÓMO LEERLO</p><h2>Un porcentaje de observaciones</h2><p>El cálculo compara filas con <code>occupancy = 1</code> frente al total de filas del grupo. No estima capacidad ni duración de la ocupación.</p><div class="note-divider"></div><p class="note-small">Las cámaras son dimensiones de análisis. Los códigos de clima se conservan sin asignarles un significado que el CSV no documenta.</p></article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-heading"><div><p class="eyebrow">DIMENSIONES · AÑO · MES · CÁMARA · HORA</p><h2>Detalle por hora</h2></div><label class="filter">Cámara <select id="camera-filter"><option value="all">Todas</option></select></label></div>
+        <div class="table-scroll"><table><thead><tr><th>Período</th><th>Cámara</th><th>Hora</th><th>Lecturas</th><th>Ocupadas</th><th>Proporción</th></tr></thead><tbody id="hourly-rows"><tr><td colspan="6">Cargando datos…</td></tr></tbody></table></div>
+      </section>
+      <p id="status" class="status" aria-live="polite"></p>
+    </main>
+    <footer><span>ClickHouse · consultas SQL de agregación</span><a href="https://github.com/Sofxx7/parking-olap-clickhouse">Código y flujo de despliegue ↗</a></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
